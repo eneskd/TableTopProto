@@ -1,3 +1,5 @@
+using System;
+
 public class ItemContainer
 {
 	public Item Item;
@@ -33,6 +35,28 @@ public class ItemContainer
 		return false;
 	}
 
-
-
+	public ItemSav GetSaveData()
+	{
+		return new ItemSav(this);
+	}
 }
+
+
+[Serializable]
+public class ItemSav : SaveData
+{
+	public string ItemType;
+	public int ItemCount;
+
+	public ItemSav(string itemType, int itemCount)
+	{
+		ItemType = itemType;
+		ItemCount = itemCount;
+	}
+
+	public ItemSav(ItemContainer itemContainer) : this(itemContainer.Item.ItemType, itemContainer.ItemCount)
+	{
+
+	}
+}
+

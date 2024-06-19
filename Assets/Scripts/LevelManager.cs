@@ -31,7 +31,7 @@ public class LevelManager : Singleton<LevelManager>
 		var inventory = new Inventory();
 		Player = new Player("Default", Pawn, inventory);
 
-		Pawn.PlaceAtStart();
+		Pawn.InitializePawn(Player, Map.Tiles[0]);
 	}
 }
 

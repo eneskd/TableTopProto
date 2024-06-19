@@ -128,42 +128,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 934b198c518b94343808c7f77e99d0b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Mover:
-    rid: 1951891954064687104
+  _fowardMover:
+    rid: 1951891962309902339
+  _returnMover:
+    rid: 1951891962309902340
   references:
     version: 2
     RefIds:
-    - rid: 1951891954064687104
+    - rid: 1951891962309902339
       type: {class: MoverWithArc, ns: , asm: Assembly-CSharp}
       data:
-        Duration: 1
-        Height: 1
+        Duration: 0.3
+        Height: 0.6
         MovementCurve:
           serializedVersion: 2
           m_Curve:
           - serializedVersion: 3
-            time: 0.004470825
+            time: 0
             value: 0
-            inSlope: 1.4846917
-            outSlope: 1.4846917
+            inSlope: 2
+            outSlope: 2
             tangentMode: 0
             weightedMode: 0
             inWeight: 0
-            outWeight: 0.0913248
-          - serializedVersion: 3
-            time: 0.8951479
-            value: 0.9973941
-            inSlope: 1.1347328
-            outSlope: -0.88003093
-            tangentMode: 1
-            weightedMode: 0
-            inWeight: 0.09156684
-            outWeight: 0.25933382
+            outWeight: 0
           - serializedVersion: 3
             time: 1
             value: 1
-            inSlope: 2
-            outSlope: 2
+            inSlope: 0
+            outSlope: 0
             tangentMode: 0
             weightedMode: 0
             inWeight: 0
@@ -177,29 +170,109 @@ MonoBehaviour:
           - serializedVersion: 3
             time: 0
             value: 0
-            inSlope: 3.254621
-            outSlope: 3.254621
+            inSlope: 5.3207335
+            outSlope: 5.3207335
             tangentMode: 0
             weightedMode: 0
             inWeight: 0
-            outWeight: 0.067228734
+            outWeight: 0.056180034
           - serializedVersion: 3
-            time: 0.5
+            time: 0.37083334
             value: 1
-            inSlope: 0.003878037
-            outSlope: 0.003878037
+            inSlope: 0.0027676048
+            outSlope: 0.0027676048
             tangentMode: 0
             weightedMode: 0
-            inWeight: 0.33333334
+            inWeight: 0.42939562
             outWeight: 0.33333334
+          - serializedVersion: 3
+            time: 0.8231127
+            value: 0
+            inSlope: -2.9250467
+            outSlope: 2.0146372
+            tangentMode: 1
+            weightedMode: 0
+            inWeight: 0.06952791
+            outWeight: 0.36400166
           - serializedVersion: 3
             time: 1
             value: 0
-            inSlope: -2.6637852
-            outSlope: -2.6637852
+            inSlope: -1.6466547
+            outSlope: -1.6466547
             tangentMode: 0
             weightedMode: 0
-            inWeight: 0.13934106
+            inWeight: 0.2591105
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+    - rid: 1951891962309902340
+      type: {class: MoverWithArc, ns: , asm: Assembly-CSharp}
+      data:
+        Duration: 1
+        Height: 2
+        MovementCurve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 2
+            outSlope: 2
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        HeightCurve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 5.3207335
+            outSlope: 5.3207335
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0.056180034
+          - serializedVersion: 3
+            time: 0.37083334
+            value: 1
+            inSlope: 0.0027676048
+            outSlope: 0.0027676048
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.42939562
+            outWeight: 0.33333334
+          - serializedVersion: 3
+            time: 0.8231127
+            value: 0
+            inSlope: -2.9250467
+            outSlope: 2.0146372
+            tangentMode: 1
+            weightedMode: 0
+            inWeight: 0.06952791
+            outWeight: 0.36400166
+          - serializedVersion: 3
+            time: 1
+            value: 0
+            inSlope: -1.6466547
+            outSlope: -1.6466547
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.2591105
             outWeight: 0
           m_PreInfinity: 2
           m_PostInfinity: 2

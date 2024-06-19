@@ -1,5 +1,3 @@
-using System;
-using System.Collections;
 using UnityEngine;
 
 public class ActionManager : Singleton<ActionManager>
@@ -7,6 +5,8 @@ public class ActionManager : Singleton<ActionManager>
 	private ActionState _actionState = ActionState.WaitingToRoll;
 
 	public ActionState GetCurrentActionState() => _actionState;
+
+	private LevelManager _levelManager => LevelManager.I;
 
 
 	private void Update()
@@ -19,52 +19,29 @@ public class ActionManager : Singleton<ActionManager>
 
 			var total = d1 + d2;
 
-			MovePawnToTarget(total);
+			MovePawnToTarget(_levelManager.Player.Pawn, total);
 		}
 	}
 
 
-	public void MovePawnToTarget(int count)
+	private void MovePawnToTarget(Pawn pawn, int stepCount)
 	{
 		_actionState = ActionState.MovingPawn;
-		StartCoroutine(PawnMovementCoroutine(LevelManager.I.Player.Pawn, count));
-
+		pawn.ExecutePawnMovement(stepCount, StepCallback, LandingCallback, TileActionExecutedCallback);
 	}
 
-	private IEnumerator PawnMovementCoroutine(Pawn pawn, int count)
+	public void StepCallback()
 	{
-		while (true)
-		{
-			pawn.MoveToNextTile(MovedToTarget);
-			count--;
 
-			yield return new WaitUntil(() => !pawn.IsMoving);
-
-			if (count <= 0) break;
-		}
-
-		FinishPawnMovement(pawn);
 	}
 
-	private void FinishPawnMovement(Pawn pawn)
+	public void LandingCallback()
 	{
 		_actionState = ActionState.ExecutingTileAction;
-		pawn.ExecuteTileAction(TileActionExecuted);
-
-	}
-
-	public void MovePawnToNextTile(Action callback)
-	{
-		LevelManager.I.Pawn.MoveToNextTile(callback);
 	}
 
 
-	public void MovedToTarget()
-	{
-
-	}
-
-	public void TileActionExecuted()
+	public void TileActionExecutedCallback()
 	{
 		_actionState = ActionState.WaitingToRoll;
 	}

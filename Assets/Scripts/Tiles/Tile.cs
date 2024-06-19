@@ -23,8 +23,8 @@ public abstract class Tile : MonoBehaviour
 		return transform.position;
 	}
 
-	public abstract void TileTouchAction(Pawn pawn, Action callback);
+	public abstract void ExecuteTileStepAction(Pawn pawn, Action callback);
 
-	public abstract void TileLandAction(Pawn pawn, Action callback);
+	public abstract void ExecuteTileLandAction(Pawn pawn, Action callback);
 
 }

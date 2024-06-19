@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a39ad6a3b8ea1842b2175bec085b190, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TileLength: 1.5
+  TileLength: 1.1
   ItemData: {fileID: 0}
   Count: 10
 --- !u!1 &2344027740166243542
