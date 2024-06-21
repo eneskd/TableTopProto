@@ -14,8 +14,8 @@ public class ActionManager : Singleton<ActionManager>
 		if (_actionState != ActionState.WaitingToRoll) return;
 		if (Input.GetKeyDown(KeyCode.Space))
 		{
-			var d1 = UnityEngine.Random.Range(0, 6);
-			var d2 = UnityEngine.Random.Range(0, 6);
+			var d1 = UnityEngine.Random.Range(1, 6);
+			var d2 = UnityEngine.Random.Range(1, 6);
 
 			var total = d1 + d2;
 

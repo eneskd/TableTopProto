@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks;
 
 public class LevelManager : Singleton<LevelManager>
 {
@@ -8,21 +9,25 @@ public class LevelManager : Singleton<LevelManager>
 	public Player Player { get; protected set; }
 	public Pawn Pawn { get; protected set; }
 
-
-	private void Start()
+	public async Task InitializeLevel()
 	{
-		InitializeLevel();
+		GenerateMap();
+		GeneratePlayer();
+
+		await LoadInventoryData();
+
+		UIManager.I.InitializeUI();
+
+	}
+
+	private async Task<bool> LoadInventoryData()
+	{
+		return await Player.Inventory.LoadData();
 	}
 
 	public void GenerateMap()
 	{
 		Map = MapGenerator.I.GenerateRandomMap();
-	}
-
-	public void InitializeLevel()
-	{
-		GenerateMap();
-		GeneratePlayer();
 	}
 
 	private void GeneratePlayer()

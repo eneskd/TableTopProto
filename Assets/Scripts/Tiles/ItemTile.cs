@@ -7,16 +7,16 @@ public class ItemTile : Tile
 	public ItemData ItemData;
 	public int Count = 10;
 	
-	public override void ExecuteTileLandAction(Pawn pawn, Action callback)
+	protected override void StartTileLandAction(Pawn pawn, Action callback)
 	{
-		Debug.Log($"Landed tile {TileIndex}");
+		pawn.Player.Inventory.AddItem(ItemData.Item, Count);
+		Debug.Log($"Landed tile {TileIndex}, Adding {Count} {ItemData.Item.ItemType}");
 		callback?.Invoke();
 	}
 
-	public override void ExecuteTileStepAction(Pawn pawn, Action callback)
+	protected override void StartTileStepAction(Pawn pawn, Action callback)
 	{
 		Debug.Log($"Touched tile {TileIndex}");
 		callback?.Invoke();
-
 	}
 }

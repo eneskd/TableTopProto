@@ -2,13 +2,12 @@ using System;
 
 public class ItemContainer
 {
-	public Item Item;
+	public string ItemType;
 	public int ItemCount { get; protected set; } = 0;
 
-
-	public ItemContainer(Item item, int itemCount = 0)
+	public ItemContainer(string itemType, int itemCount = 0)
 	{
-		Item = item;
+		ItemType = itemType;
 		ItemCount = itemCount;
 	}
 
@@ -54,7 +53,7 @@ public class ItemSav : SaveData
 		ItemCount = itemCount;
 	}
 
-	public ItemSav(ItemContainer itemContainer) : this(itemContainer.Item.ItemType, itemContainer.ItemCount)
+	public ItemSav(ItemContainer itemContainer) : this(itemContainer.ItemType, itemContainer.ItemCount)
 	{
 
 	}

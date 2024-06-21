@@ -3,10 +3,13 @@ using UnityEngine;
 
 public abstract class Tile : MonoBehaviour
 {
-	public float TileLength = 1f;
-	public int TileIndex { get; protected set; }
+	[SerializeField] protected Transform _landingPosition;
 
+	public float TileLength = 1f;
+
+	public int TileIndex { get; protected set; }
 	protected Map _map;
+
 
 	public void SetMap(Map map)
 	{
@@ -20,11 +23,22 @@ public abstract class Tile : MonoBehaviour
 
 	public virtual Vector3 GetLandingPosition()
 	{
-		return transform.position;
+		return _landingPosition.position;
 	}
 
-	public abstract void ExecuteTileStepAction(Pawn pawn, Action callback);
+	public virtual void ExecuteTileStepAction(Pawn pawn, Action callback)
+	{
+		StartTileStepAction(pawn, callback);
+	}
 
-	public abstract void ExecuteTileLandAction(Pawn pawn, Action callback);
+	public virtual void ExecuteTileLandAction(Pawn pawn, Action callback)
+	{
+		StartTileLandAction(pawn, callback);
+	}
+
+	protected abstract void StartTileStepAction(Pawn pawn, Action callback);
+
+
+	protected abstract void StartTileLandAction(Pawn pawn, Action callback);
 
 }
