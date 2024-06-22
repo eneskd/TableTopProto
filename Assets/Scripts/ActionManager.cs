@@ -1,19 +1,31 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
 public class ActionManager : Singleton<ActionManager>
 {
-	private ActionState _actionState = ActionState.WaitingToRoll;
+	public ActionState ActionState
+	{
+		get => _actionState; 
+		set
+		{
+			_actionState = value;
+			ActionStateChanged?.Invoke(_actionState);
+		}
+	}
 
-	public ActionState GetCurrentActionState() => _actionState;
+	public ActionState _actionState;
+
+
+	public event Action<ActionState> ActionStateChanged;
 
 	private LevelManager _levelManager => LevelManager.I;
 
 
 	private void Update()
 	{
-		if (_actionState != ActionState.WaitingToRoll) return;
+		if (ActionState != ActionState.WaitingToRoll) return;
 		if (Input.GetKeyDown(KeyCode.Space))
 		{
 			RollDices(DiceRollManager.I.results);
@@ -22,7 +34,7 @@ public class ActionManager : Singleton<ActionManager>
 
 	public void RollDices(List<int> results)
 	{
-		_actionState = ActionState.Rolling;
+		ActionState = ActionState.Rolling;
 		DiceRollManager.I.ThrowTheDice(results);
 	}
 
@@ -36,7 +48,7 @@ public class ActionManager : Singleton<ActionManager>
 
 	private void MovePawnToTarget(Pawn pawn, int stepCount)
 	{
-		_actionState = ActionState.MovingPawn;
+		ActionState = ActionState.MovingPawn;
 		pawn.ExecutePawnMovement(stepCount, StepCallback, LandingCallback, TileActionExecutedCallback);
 	}
 
@@ -47,16 +59,16 @@ public class ActionManager : Singleton<ActionManager>
 
 	private void LandingCallback()
 	{
-		_actionState = ActionState.ExecutingTileAction;
+		ActionState = ActionState.ExecutingTileAction;
 	}
 
 
 	private void TileActionExecutedCallback()
 	{
-		_actionState = ActionState.WaitingToRoll;
+		ActionState = ActionState.WaitingToRoll;
 	}
 
-	
+
 }
 
 public enum ActionState
