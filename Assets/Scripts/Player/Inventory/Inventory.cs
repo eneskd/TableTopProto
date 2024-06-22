@@ -39,7 +39,7 @@ public class Inventory : ISaveUtilityUser
 		InventoryIncreased?.Invoke(this, args);
 		InventoryChanged?.Invoke(this, args);
 
-		SaveData();
+		_ = SaveData();
 	}
 
 	public bool RemoveItem(Item item, int count)
@@ -60,7 +60,7 @@ public class Inventory : ISaveUtilityUser
 			InventoryChanged?.Invoke(this, args);
 		}
 
-		SaveData();
+		_ = SaveData();
 
 		return success;
 	}

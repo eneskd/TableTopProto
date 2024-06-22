@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class ActionManager : Singleton<ActionManager>
@@ -14,15 +16,23 @@ public class ActionManager : Singleton<ActionManager>
 		if (_actionState != ActionState.WaitingToRoll) return;
 		if (Input.GetKeyDown(KeyCode.Space))
 		{
-			var d1 = UnityEngine.Random.Range(1, 6);
-			var d2 = UnityEngine.Random.Range(1, 6);
-
-			var total = d1 + d2;
-
-			MovePawnToTarget(_levelManager.Player.Pawn, total);
+			RollDices(DiceRollManager.I.results);
 		}
 	}
 
+	public void RollDices(List<int> results)
+	{
+		_actionState = ActionState.Rolling;
+		DiceRollManager.I.ThrowTheDice(results);
+	}
+
+	public void DicesRolled(List<int> results)
+	{
+		var sum = results.Sum();
+
+		Debug.Log(sum);
+		MovePawnToTarget(_levelManager.Player.Pawn, sum);
+	}
 
 	private void MovePawnToTarget(Pawn pawn, int stepCount)
 	{
@@ -30,21 +40,23 @@ public class ActionManager : Singleton<ActionManager>
 		pawn.ExecutePawnMovement(stepCount, StepCallback, LandingCallback, TileActionExecutedCallback);
 	}
 
-	public void StepCallback()
+	private void StepCallback()
 	{
 
 	}
 
-	public void LandingCallback()
+	private void LandingCallback()
 	{
 		_actionState = ActionState.ExecutingTileAction;
 	}
 
 
-	public void TileActionExecutedCallback()
+	private void TileActionExecutedCallback()
 	{
 		_actionState = ActionState.WaitingToRoll;
 	}
+
+	
 }
 
 public enum ActionState
