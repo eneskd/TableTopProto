@@ -10,7 +10,32 @@ public class MapGenerator : Singleton<MapGenerator>
 	public List<Tile> Tiles = new List<Tile>();
 	public Transform StartPoint;
 	public const string MapSaveExtention = ".map";
-	public static string MapSaveDirectory => Application.dataPath + "/Maps/";
+	public static string MapSaveDirectory => Application.dataPath + "/Resources/Maps/";
+
+	public async Task<Map> LoadDefaultMap()
+	{
+		var path = MapSaveDirectory + "Default" + ".map";
+		return await LoadMap(path);
+	}
+
+	public Map GenerateRandomMap()
+	{
+		var tiles = new List<Tile>();
+		var position = StartPoint.position;
+		for (int i = 0; i < MapSize; i++)
+		{
+			var tilePrefab = Tiles.GetRandomElement();
+			position += Vector3.right * tilePrefab.TileLength;
+			var tile = Instantiate(tilePrefab, position, Quaternion.identity, StartPoint);
+			tile.SetTileIndex(i);
+			tile.Initialize();
+			tiles.Add(tile);
+		}
+
+		var map = new Map("Random", tiles);
+
+		return map;
+	}
 
 
 	[ContextMenu("Get Data")]
@@ -20,7 +45,7 @@ public class MapGenerator : Singleton<MapGenerator>
 
 		foreach (var file in files)
 		{
-			if (file.EndsWith(".map"))
+			if (file.EndsWith("MapSaveExtention"))
 				Debug.Log(file);
 		}
 	}
@@ -29,12 +54,12 @@ public class MapGenerator : Singleton<MapGenerator>
 	public void SaveMap()
 	{
 		var saveData = LevelManager.I.Map.GetSaveData();
-		var path = MapSaveDirectory + saveData.MapName + ".map";
+		var path = MapSaveDirectory + saveData.MapName + MapSaveExtention;
 		_ = SaveUtility.SaveData(path, saveData);
 	}
 
 
-	public async Task<Map> LoadMap(string path)
+	private async Task<Map> LoadMap(string path)
 	{
 		var result = await SaveUtility.LoadData<MapSav>(path);
 		if (result.Success)
@@ -74,30 +99,4 @@ public class MapGenerator : Singleton<MapGenerator>
 
 		return tile;
 	}
-
-	public async Task<Map> LoadDefaultMap()
-	{
-		var path = MapSaveDirectory + "Default" + ".map";
-		return await LoadMap(path);
-	}
-
-	public Map GenerateRandomMap()
-	{
-		var tiles = new List<Tile>();
-		var position = StartPoint.position;
-		for (int i = 0; i < MapSize; i++)
-		{
-			var tilePrefab = Tiles.GetRandomElement();
-			position += Vector3.right * tilePrefab.TileLength;
-			var tile = Instantiate(tilePrefab, position, Quaternion.identity, StartPoint);
-			tile.SetTileIndex(i);
-			tile.Initialize();
-			tiles.Add(tile);
-		}
-
-		var map = new Map("Random", tiles);
-
-		return map;
-	}
-
 }

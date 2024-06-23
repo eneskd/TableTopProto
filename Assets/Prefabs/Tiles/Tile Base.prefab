@@ -164,10 +164,54 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a39ad6a3b8ea1842b2175bec085b190, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LandingMover:
+    Duration: 0.2
+    Height: -0.1
+    MovementCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    HeightCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 5.3207335
+        outSlope: 5.3207335
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0.056180034
+      - serializedVersion: 3
+        time: 0.499999
+        value: 1
+        inSlope: 0.0027676048
+        outSlope: 0.0027676048
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.42939562
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 1
+        value: 0
+        inSlope: -4.7169857
+        outSlope: -4.7169857
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.04999985
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
   _landingPosition: {fileID: 9112643824273038294}
+  TileType: 
   TileLength: 1.1
   ItemData: {fileID: 11400000, guid: c86927f8a3cfc5e43ba8485fd6ca29ae, type: 2}
   Count: 10
+  Text: {fileID: 0}
 --- !u!1 &2344027740166243542
 GameObject:
   m_ObjectHideFlags: 0

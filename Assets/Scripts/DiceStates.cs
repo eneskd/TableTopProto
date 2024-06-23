@@ -11,7 +11,6 @@ public class DiceStates : MonoBehaviour
 
     [Header("References")]
     public DiceRotator DiceLogic;
-    public AudioSource SoundLit;
     public AudioSource SoundCollideFloor;
     public AudioSource SoundCollideDice;
 
@@ -31,14 +30,6 @@ public class DiceStates : MonoBehaviour
         IsTextureLit = false;
     }
 
-    public void ShowDiceResult()
-    {
-        if (IsTextureLit == false)
-        {
-            SoundLit.Play();
-            IsTextureLit = true;
-        }
-    }
 
     #region Audio-Related Functions
     //This is to help the Animation Recorder capture the event

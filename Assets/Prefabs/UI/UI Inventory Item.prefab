@@ -127,6 +127,41 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _itemImage: {fileID: 9166820875131428800}
   _itemCountText: {fileID: 6686857669268223687}
+  _bumpAnimationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 5.3207335
+      outSlope: 5.3207335
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.056180034
+    - serializedVersion: 3
+      time: 0.499999
+      value: 1
+      inSlope: 0.0027676048
+      outSlope: 0.0027676048
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.42939562
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: -4.7169857
+      outSlope: -4.7169857
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.04999985
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _bumpStrength: 1.5
+  _bumpDuration: 0.3
 --- !u!1 &6243200230774820344
 GameObject:
   m_ObjectHideFlags: 0

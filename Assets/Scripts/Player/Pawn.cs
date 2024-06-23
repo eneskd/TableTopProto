@@ -3,8 +3,11 @@ using UnityEngine;
 
 public class Pawn : MonoBehaviour
 {
-	[SerializeReference] private Mover _fowardMover = new MoverWithArc();
-	[SerializeReference] private Mover _returnMover = new MoverWithArc();
+	[SerializeField] private MoverWithArc _fowardMover = new MoverWithArc();
+	[SerializeField] private MoverWithArc _returnMover = new MoverWithArc();
+	[SerializeField] private AudioSource _stepSound;
+	[SerializeField] private AudioSource _landingSound;
+
 
 	public Player Player { get; protected set; }
 	public Tile CurrentTile { get; protected set; }
@@ -72,6 +75,7 @@ public class Pawn : MonoBehaviour
 	{
 		CurrentTile = _movementTarget;
 		CurrentTile.ExecuteTileStepAction(this, null);
+		_stepSound.Play();
 		RemainingSteps--;
 		_stepCallback?.Invoke();
 
@@ -89,7 +93,7 @@ public class Pawn : MonoBehaviour
 	{
 		IsMoving = false;
 		_landingCallback?.Invoke();
-
+		_landingSound.Play();
 		ExecuteTileAction(TileActionExecuted);
 	}
 

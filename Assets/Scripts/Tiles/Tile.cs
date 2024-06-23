@@ -3,6 +3,8 @@ using UnityEngine;
 
 public abstract class Tile : MonoBehaviour
 {
+	public MoverWithArc LandingMover = new MoverWithArc();
+
 	[SerializeField] protected Transform _landingPosition;
 
 	public string TileType;
@@ -35,6 +37,7 @@ public abstract class Tile : MonoBehaviour
 	public virtual void ExecuteTileStepAction(Pawn pawn, Action callback)
 	{
 		StartTileStepAction(pawn, callback);
+		LandingMover.Move(transform, transform.position, transform.position);
 	}
 
 	public virtual void ExecuteTileLandAction(Pawn pawn, Action callback)

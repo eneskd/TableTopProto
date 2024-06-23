@@ -122,17 +122,11 @@ public class PhysicsSimulator : MonoBehaviour
 				//Play Sound whenever contact happens
 				if (RecordingDataList[j].RecordedAnimation[i].IsContactWithArena)
 				{
-					// Play roll sound
+					DiceRollManager.I.DiceDataList[j].DiceStates.PlaySoundRollLow();
 				}
 				if (RecordingDataList[j].RecordedAnimation[i].IsContactWithDice)
 				{
-					// Play contact sound
-				}
-
-				//When the dice stops rolling, lit the texture
-				if (RecordingDataList[j].RecordedAnimation[i].IsNotMoving == true)
-				{
-					// Play stop sound
+					DiceRollManager.I.DiceDataList[j].DiceStates.PlaySoundRollHigh();
 				}
 			}
 			yield return new WaitForFixedUpdate();
