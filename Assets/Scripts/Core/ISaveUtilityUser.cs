@@ -4,5 +4,4 @@ public interface ISaveUtilityUser
 	public string FolderName { get; }
 	public SaveData GetSaveData();
 
-
 }

@@ -2,7 +2,9 @@ using System;
 using System.IO;
 using System.Threading.Tasks;
 using UnityEngine;
-
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Unity.VisualScripting;
 
 public static class SaveUtility
 {
@@ -12,11 +14,18 @@ public static class SaveUtility
 	public static string SaveDirectory => Application.persistentDataPath;
 
 
+	public static string[] GetFiles(string fullPath)
+	{
+		string directoryPath = Path.GetDirectoryName(fullPath);
+		return Directory.GetFiles(directoryPath);
+	} 
+
 	public async static Task<bool> SaveData<T>(string fullPath, T data)
 	{
 		try
 		{
 			string directoryPath = Path.GetDirectoryName(fullPath);
+
 
 			if (!Directory.Exists(directoryPath))
 				Directory.CreateDirectory(directoryPath);
@@ -26,7 +35,19 @@ public static class SaveUtility
 				Debug.LogWarning($"Overriding the save file at {fullPath}");
 			}
 
-			string json = JsonUtility.ToJson(data);
+			var json = JsonConvert.SerializeObject(data, new JsonSerializerSettings()
+			{
+				TypeNameHandling = TypeNameHandling.All,
+			});
+			
+
+			// JsonSerializer serializer = new JsonSerializer();
+			// using (StreamWriter sw = new StreamWriter($@"{fullPath}"))
+			// using (JsonWriter writer = new JsonTextWriter(sw))
+			// {
+			// 	serializer.Serialize(writer, data);
+			// }
+
 
 			await File.WriteAllTextAsync(fullPath, json);
 
@@ -57,8 +78,6 @@ public static class SaveUtility
 		return await SaveData(fullPath, saveUtilityUser.GetSaveData());
 	}
 
-
-
 	public async static Task<LoadResult<T>> LoadData<T>(string fullPath)
 	{
 		try
@@ -66,7 +85,11 @@ public static class SaveUtility
 			if (File.Exists(fullPath))
 			{
 				var json = await File.ReadAllTextAsync(fullPath);
-				T data = JsonUtility.FromJson<T>(json);
+
+				T data = JsonConvert.DeserializeObject<T>(json, new JsonSerializerSettings()
+				{
+					TypeNameHandling = TypeNameHandling.Auto,
+				});
 
 #if UNITY_EDITOR
 				if (EnableDebugLog)
@@ -86,7 +109,6 @@ public static class SaveUtility
 		{
 			Debug.LogError(e);
 		}
-
 
 		return new LoadResult<T>(false, default(T));
 	}

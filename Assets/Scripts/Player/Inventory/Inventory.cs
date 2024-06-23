@@ -100,6 +100,7 @@ public class InventorySav : SaveData
 {
 	public List<ItemSav> Items;
 
+	public InventorySav() { }
 	public InventorySav(Dictionary<string, ItemContainer> items)
 	{
 		Items = new List<ItemSav>();

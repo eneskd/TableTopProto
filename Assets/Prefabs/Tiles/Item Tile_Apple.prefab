@@ -10,7 +10,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1114593476024248967, guid: 975d7e18580679c43a63be505d671e77, type: 3}
       propertyPath: m_Name
-      value: Tile
+      value: Item Tile_Apple
+      objectReference: {fileID: 0}
+    - target: {fileID: 2380549442382323502, guid: 975d7e18580679c43a63be505d671e77, type: 3}
+      propertyPath: Text
+      value: 
+      objectReference: {fileID: 7353654416721106650}
+    - target: {fileID: 2380549442382323502, guid: 975d7e18580679c43a63be505d671e77, type: 3}
+      propertyPath: TileType
+      value: AppleItmeTile
       objectReference: {fileID: 0}
     - target: {fileID: 7175647467821178607, guid: 975d7e18580679c43a63be505d671e77, type: 3}
       propertyPath: m_LocalPosition.x
@@ -57,3 +65,14 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 975d7e18580679c43a63be505d671e77, type: 3}
+--- !u!114 &7353654416721106650 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6586810007104239390, guid: 975d7e18580679c43a63be505d671e77, type: 3}
+  m_PrefabInstance: {fileID: 4423767895998947780}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9541d86e2fd84c1d9990edf0852d74ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

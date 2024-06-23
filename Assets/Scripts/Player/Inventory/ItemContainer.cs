@@ -11,7 +11,6 @@ public class ItemContainer
 		ItemCount = itemCount;
 	}
 
-
 	public void AddItem(int count)
 	{
 		ItemCount += count;
@@ -21,7 +20,6 @@ public class ItemContainer
 	{
 		return ItemCount >= count;
 	}
-
 
 	public bool RemoveItem(int count)
 	{
@@ -46,6 +44,8 @@ public class ItemSav : SaveData
 {
 	public string ItemType;
 	public int ItemCount;
+
+	public ItemSav() { }
 
 	public ItemSav(string itemType, int itemCount)
 	{

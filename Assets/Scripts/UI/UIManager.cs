@@ -27,7 +27,6 @@ public class UIManager : Singleton<UIManager>
 		UIInventory.Initialize(LevelManager.I.Player.Inventory);
 	}
 
-
 	private void ActionStateChanged(ActionState state)
 	{
 		RollButton.interactable = state == ActionState.WaitingToRoll;

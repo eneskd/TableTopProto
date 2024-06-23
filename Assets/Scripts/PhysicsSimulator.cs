@@ -44,6 +44,7 @@ public class PhysicsSimulator : MonoBehaviour
 		Simulate();
 	}
 
+	// Get and Record initial states
 	private void GetInitialState()
 	{
 		foreach (var gameObject in ObjectsToRecord)

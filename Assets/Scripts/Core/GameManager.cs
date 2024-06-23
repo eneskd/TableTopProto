@@ -2,6 +2,7 @@ using System.Threading.Tasks;
 
 public class GameManager : Singleton<GameManager>
 {
+	
 	public ItemDatabase ItemDatabase;
 
 	public async void  Start()

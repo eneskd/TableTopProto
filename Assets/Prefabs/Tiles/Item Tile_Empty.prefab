@@ -91,6 +91,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _landingPosition: {fileID: 4833202634950769170}
+  TileType: EmptyTile
   TileLength: 1.1
 --- !u!4 &4833202634950769170 stripped
 Transform:

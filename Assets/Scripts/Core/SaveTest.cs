@@ -54,6 +54,11 @@ public class TestSav : SaveData
 	public List<float> Floats = new List<float>();
 	public List<int> Ints = new List<int>();
 
+	public TestSav()
+	{
+
+	}
+
 	public TestSav(List<string> strings, List<float> floats, List<int> ints)
 	{
 		Strings = strings;

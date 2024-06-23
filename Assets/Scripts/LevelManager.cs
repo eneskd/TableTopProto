@@ -1,9 +1,10 @@
-using System;
 using System.Threading.Tasks;
 
 public class LevelManager : Singleton<LevelManager>
 {
 	public Pawn PawnPrefab;
+
+	public bool GenerateRandomMap;
 
 	public Map Map { get; protected set; }
 	public Player Player { get; protected set; }
@@ -11,7 +12,7 @@ public class LevelManager : Singleton<LevelManager>
 
 	public async Task InitializeLevel()
 	{
-		GenerateMap();
+		var map = await GenerateMap();
 		GeneratePlayer();
 
 		await LoadInventoryData();
@@ -25,9 +26,18 @@ public class LevelManager : Singleton<LevelManager>
 		return await Player.Inventory.LoadData();
 	}
 
-	public void GenerateMap()
+	public async Task<Map> GenerateMap()
 	{
-		Map = MapGenerator.I.GenerateRandomMap();
+		if (GenerateRandomMap)
+		{
+			Map = MapGenerator.I.GenerateRandomMap();
+		}
+		else
+		{
+			Map = await MapGenerator.I.LoadDefaultMap();
+		}
+
+		return Map;
 	}
 
 	private void GeneratePlayer()
